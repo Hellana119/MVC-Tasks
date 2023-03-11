@@ -20,3 +20,14 @@ html {
 body {
   margin-bottom: 60px;
 }
+table,th,td{
+    border: 1px solid black;
+}
+table {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+.ul{
+    border: 1px solid black;
+}
