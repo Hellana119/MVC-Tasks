@@ -1,0 +1,25 @@
+﻿@model Ticket
+
+<form asp-action="Add" method="post">
+    @*<div class="form-group">
+        <label asp-for="CreatedDate">CreatedDate</label>
+        <input asp-for="CreatedDate" class="form-control"/>
+    </div>*@
+
+    <div class="form-group col-6">
+        <input asp-for="IsClosed" name="IsClosed" value=""/>
+        <label asp-for="IsClosed" >Closed</label>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Severity">Severity</label>
+        <select asp-for="Severity" asp-items="Html.GetEnumSelectList<Severity>()" ></select>
+    </div><br />
+
+    <div class="form-group">
+        <label asp-for="Description">Description</label>
+        <textarea asp-for="Description" ></textarea>
+    </div>
+    
+    <button class="btn btn-secondary">Submit</button>
+</form>
