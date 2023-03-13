@@ -10,10 +10,10 @@
           <img src="@car.Image" alt="@car.Model">
           <figcaption>@car.Model from @car.Manufacturer</figcaption>
      </figure>
-    <p><strong>Model:</strong>  @car.Model</p>
+    <p><strong>Name:</strong>  @car.Name</p>
     <p><strong>Manufacturer:</strong> @car.Manufacturer</p>
     <p><strong>Description: </strong>@Html.Raw(@car.HtmlDescription)</p>
-    <p><strong>Year:</strong> @(DateTime.Now.Year - car.FirstUseDate.Year)</p>
+    <p><strong>Year:</strong> @car.duration</p>
     <p><strong>from:</strong> @status</p>
     
 

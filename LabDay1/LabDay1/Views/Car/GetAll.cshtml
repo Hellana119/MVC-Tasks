@@ -4,21 +4,27 @@
     var cars = Model;
     var firstCar = cars[0];
 }
-
+@{
+    void renderImg(Car cars){
+        <figure class="figure">
+            <img src="@cars.Image" alt="@cars.Model">
+            <figcaption><strong>figcaption: </strong> @cars.Name</figcaption>
+        </figure>
+    }
+}
 
     @for (int i = 0; i < cars.Count; i++)
     {
     <ul class="ul">
         <li>
-            <figure class="figure">
-                    <img src="@cars[i].Image" alt="@cars[i].Model">
-                <figcaption><strong>figcaption: </strong> @cars[i].Model from @cars[i].Manufacturer</figcaption>
-             </figure>
+           @{
+               renderImg(cars[i]);
+           }
         </li>
-        <li><strong>Name: </strong> @cars[i].Model from @cars[i].Manufacturer</li>
+        <li><strong>Name: </strong> @cars[i].Name</li>
         <li><strong>Description</strong> @Html.Raw(@cars[i].HtmlDescription)</li>
-        <li><strong>Year: </strong> @(DateTime.Now.Year - cars[i].FirstUseDate.Year)</li>
-        <li><a href="/car/GetDetails?carModel=@cars[i].Model&status=List">Details</a></li>
+        <li><strong>Year: </strong> @cars[i].duration</li>
+        <li><a href="/car/GetDetails?carModel=@cars[i].Model&status=@Status.List">Details</a></li>
     </ul>
     }
 
@@ -30,21 +36,21 @@
         <th>Image</th>
         <th>HtmlDescription</th>
         <th>FirstUseDate</th>
+        <th>Action</th>
     </tr>
     @for(int i =0; i < cars.Count; i++)
     {
         <tr>
             <td>@i</td>
-            <td>@cars[i].Model from @cars[i].Manufacturer</td>
+            <td>@cars[i].Name</td>
             <td>
-                <figure class="figure">
-                    <img src="@cars[i].Image" alt="@cars[i].Model">
-                    <figcaption>@cars[i].Model from @cars[i].Manufacturer</figcaption>
-                </figure>
+                @{
+                    renderImg(cars[i]);
+                }
                 </td>
             <td>@Html.Raw(@cars[i].HtmlDescription)</td>
-            <td> @(DateTime.Now.Year - cars[i].FirstUseDate.Year)</td>
-            <td><a href="/car/GetDetails?carModel=@cars[i].Model&status=Table">Details</a></td>
+            <td> @cars[i].duration</td>
+            <td><a href="/car/GetDetails?carModel=@cars[i].Model&status=@Status.Table">Details</a></td>
         </tr>
     }
 </table>

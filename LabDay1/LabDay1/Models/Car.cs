@@ -7,6 +7,8 @@
         public string? Image { get; set; }
         public string? HtmlDescription { get; set; }
         public DateTime FirstUseDate { get; set; }
+        public string Name => $"{Model} from {Manufacturer}";
+        public string duration => $"{DateTime.Now.Year - FirstUseDate.Year}";
 
         public static List<Car> GetCars()
             => new() {
