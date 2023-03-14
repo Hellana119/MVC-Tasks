@@ -8,21 +8,21 @@ namespace Day2.Controllers
     {
         public IActionResult Index()
         {
-            var tickets = Ticket.GetTickets();
+            var tickets = Ticket._getticket;
             return View(tickets);
         }
 
         [HttpGet]
         public IActionResult Add()
         {
-            var tickets = Ticket.GetTickets();
+            var tickets = Ticket._getticket;
             return View("Add");
         }
 
         [HttpPost]
         public IActionResult Add(AddTicketVM ticketVM)
         {
-            var tickets = Ticket.GetTickets();
+            var tickets = Ticket._getticket;
             var addTicket = new Ticket
             {
                 CreatedDate = DateTime.Now.AddHours(-1),
@@ -31,7 +31,8 @@ namespace Day2.Controllers
                 Severity= ticketVM.Severity,
             };
             tickets.Add(addTicket);
-            return View("index", tickets);
+            //return View("index", tickets);
+            return RedirectToAction(nameof(Index));
            
         }
     }
