@@ -1,0 +1,21 @@
+﻿@using Day3.Models.Domain
+@model List<Ticket>;
+
+<div class="container">
+    @foreach(var item in Model)
+    {
+        <div class="card">
+            <div class="card-body">
+                <h3>@item.CreatedDate</h3>
+                <h4>@item.IsClosed</h4>
+                <h4>@item.Severity</h4>
+                <h4>@item.Description</h4>
+                <h4>@item.department?.Name</h4>
+
+
+            </div>
+        </div>
+    }
+    <a asp-action="Add" class="alert alert-dark">Add Another Ticket</a>
+</div>
+
