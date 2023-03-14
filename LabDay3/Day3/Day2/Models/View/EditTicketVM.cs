@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Day3.Models.View
 {
    // public record AddTicketVM(bool IsClosed, Severity Severity, string Description, Department? department);
-    public record AddTicketVM
+    public record EditTicketVM
     {
         public Guid Id { get; set; }
         public DateTime CreatedDate { get; init; }

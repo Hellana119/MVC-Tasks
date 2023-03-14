@@ -6,11 +6,21 @@
     {
         <div class="card">
             <div class="card-body">
-                <h3>@item.CreatedDate</h3>
-                <h4>@item.IsClosed</h4>
-                <h4>@item.Severity</h4>
-                <h4>@item.Description</h4>
-                <h4>@item.department?.Name</h4>
+                <p><strong>CreatedDate:</strong> @item.CreatedDate</p>
+                <p><strong> IsClosed: </strong>@item.IsClosed</p>
+                <p><strong> Severity: </strong>@item.Severity</p>
+                <p><strong>Description: </strong>@item.Description</p>
+                <p><strong>department Name: </strong>@item.department?.Name</p>
+                <p><strong>Developer Name:</strong>
+                    @foreach(var developer in item.Developers)
+                    {
+                        
+                            @($"{developer.FirstName}  {developer.LastName}. ");
+                       
+                    }
+                         </p>
+                <a asp-action="Edit"  class="btn btn-primary text-white">Edit</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-warning text-white">Delete</a>
 
 
             </div>

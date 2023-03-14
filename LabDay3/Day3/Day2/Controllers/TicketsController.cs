@@ -14,19 +14,12 @@ namespace Day2.Controllers
             var tickets = Ticket.GetTickets();
             return View(tickets);
         }
+        #region Add
 
         [HttpGet]
         public IActionResult Add()
         {
-            var tickets = Ticket.GetTickets();
-            var departments = Department.GetDepartments();
-            //ViewBag.Department = departments;
-           var departmentsList = departments.Select(mapDepartmentoItem).ToList();
-            ViewData[magicStrings.Departments] = departmentsList;
-
-            var developers = Developer.GetDevelopers();
-            var developerListItems = developers.Select(d => new SelectListItem($"{d.FirstName}  {d.LastName}", d.Id.ToString()));
-            ViewBag.developerListItems = developerListItems;
+            getFormData();
             return View("Add");
         }
 
@@ -59,6 +52,67 @@ namespace Day2.Controllers
             //item.Value = department.Id.ToString();
             var item = new SelectListItem(department.Name, department.Id.ToString());
             return item;
+        }
+        #endregion
+
+        #region Edit
+        [HttpGet]
+        public IActionResult Edit(Guid id)
+        {
+
+            getFormData();
+            var EditTicket = GetTickets().First(a=> a.Id == id);
+            var ticketVM = new EditTicketVM {
+                Id = EditTicket.Id,
+                IsClosed = EditTicket.IsClosed,
+                Description = EditTicket.Description,
+                Severity = EditTicket.Severity,
+                DepartmentId = EditTicket.department.Id,
+                DevelopersIds = EditTicket.Developers.Select(a => a.Id).ToList(),
+
+            };
+            return View(ticketVM);
+        }
+        [HttpPost]
+        public IActionResult Edit(EditTicketVM ticketVM)
+        {
+            var developers = Developer.GetDevelopers();
+            var selectedDevIds = ticketVM.DevelopersIds;
+            var selectedDev = developers.Where(d => selectedDevIds.Contains(d.Id)).ToList();
+
+            var EditTicket = GetTickets().First(a=> a.Id == ticketVM.Id);
+            EditTicket.IsClosed = ticketVM.IsClosed;
+            EditTicket.Severity = ticketVM.Severity;
+            EditTicket.department = Department.GetDepartments().First(d => d.Id.ToString() == ticketVM.DepartmentId.ToString());
+            EditTicket.Developers = selectedDev;
+            return RedirectToAction(nameof(Index));
+        }
+        #endregion
+
+        #region Delete
+        [HttpGet]
+        public IActionResult Delete()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Delete(Guid id)
+        {
+            var DeleteTicket = GetTickets().First(a => a.Id == id);
+            GetTickets().Remove(DeleteTicket);
+            return RedirectToAction(nameof(Index));
+        }
+        #endregion
+        private void getFormData()
+        {
+            var departments = Department.GetDepartments();
+            //ViewBag.Department = departments;
+            var departmentsList = departments.Select(mapDepartmentoItem).ToList();
+            ViewData[magicStrings.Departments] = departmentsList;
+
+            var developers = Developer.GetDevelopers();
+            var developerListItems = developers.Select(d => new SelectListItem($"{d.FirstName}  {d.LastName}", d.Id.ToString()));
+            ViewBag.developerListItems = developerListItems;
         }
     }
 }

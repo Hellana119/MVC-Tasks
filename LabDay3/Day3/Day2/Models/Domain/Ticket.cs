@@ -5,6 +5,7 @@ namespace Day3.Models.Domain
 {
     public class Ticket
     {
+        public Guid Id { get; set; }
         public DateTime CreatedDate { get; set; }
         public bool IsClosed { get; set; }
         public Severity Severity { get; set; }

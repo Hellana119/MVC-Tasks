@@ -1,4 +1,4 @@
-﻿@model AddTicketVM
+﻿@model EditTicketVM
 @{
     var departments = ViewData[magicStrings.Departments] as List<SelectListItem> ?? new List<SelectListItem>();
 }
@@ -6,39 +6,37 @@
 
     <div class="form-group col-6">
         <input asp-for="IsClosed" name="IsClosed" />
-        <label asp-for="IsClosed" >Closed</label>
+        <label asp-for="IsClosed">Closed</label>
+    </div>
+
+    <div class="form-group col-6">
+        <label asp-for="Id">Closed</label>
+        <input asp-for="Id" disabled />
+    </div>
+
+    <div class="form-group col-6">
+        <input asp-for="IsClosed" name="IsClosed" />
+        <label asp-for="IsClosed">Closed</label>
     </div>
 
     <div class="form-group">
         <label asp-for="Severity">Severity</label>
-        <select asp-for="Severity" asp-items="Html.GetEnumSelectList<Severity>()" ></select>
+        <select asp-for="Severity" asp-items="Html.GetEnumSelectList<Severity>()"></select>
     </div><br />
 
     <div class="form-group">
         <label asp-for="Description">Description</label>
-        <textarea asp-for="Description" ></textarea>
+        <textarea asp-for="Description"></textarea>
     </div><br />
 
     <div class="form-group">
         <label asp-for="DepartmentId"></label>
         <select asp-for="DepartmentId" asp-items="departments"></select>
-     @*   <select name="department">
-            @foreach (var dept in departments)
-            {
-                <option value="@dept.Id">@dept.Name</option>
-            }
-        </select>*@
     </div><br />
 
     <div class="form-group">
         <label asp-for="DevelopersIds"></label>
         <select asp-for="DevelopersIds" asp-items="ViewBag.developerListItems"></select>
-        @*   <select name="department">
-        @foreach (var dept in departments)
-        {
-        <option value="@dept.Id">@dept.Name</option>
-        }
-        </select>*@
     </div><br />
 
     <button class="btn btn-secondary">Submit</button>
