@@ -1,0 +1,18 @@
+﻿@model TicketDetailsVM
+@{
+    var ticket = Model; 
+}
+<div class="container">
+        <div class="card mb-4">
+            <div class="card-body">
+            <p>ID: @ticket.Id</p>
+            <p>Title: @ticket.Title</p>
+            <p>Severity: @ticket.Severity</p>
+            <p>Description: @ticket.Description</p>
+            <p>DepartmentName: @ticket.DepartmentName</p>
+            <p>DevelorerCount: @ticket.DevelorerCount</p>
+
+                <a asp-action="Edit" class="btn btn-info me-3 text-white">Edit</a>
+            </div>
+        </div>
+</div>
