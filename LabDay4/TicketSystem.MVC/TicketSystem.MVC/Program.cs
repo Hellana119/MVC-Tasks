@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using TicketSystem.BL;
 using TicketSystem.DAL;
 
 namespace TicketSystem.MVC
@@ -16,6 +17,7 @@ namespace TicketSystem.MVC
             builder.Services.AddDbContext<TicketContext>(options => options.UseSqlServer(connectionString));
 
             builder.Services.AddScoped<ITicketsRepo, TicketRepo>();
+            builder.Services.AddScoped<ITicketsManager, TicketsManager>();
 
             var app = builder.Build();
 
