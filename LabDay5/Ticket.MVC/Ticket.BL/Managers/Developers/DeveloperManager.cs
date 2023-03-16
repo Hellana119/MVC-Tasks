@@ -11,9 +11,9 @@ namespace TicketSystem.BL.Managers.Developers
 {
     public class DeveloperManager : IDeveloperManager
     {
-        private readonly DevelopersRepo _developersRepo;
+        private readonly IDevelopersRepo _developersRepo;
 
-        public DeveloperManager(DevelopersRepo developersRepo)
+        public DeveloperManager(IDevelopersRepo developersRepo)
         {
             _developersRepo = developersRepo;
         }

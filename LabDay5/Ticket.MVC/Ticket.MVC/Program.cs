@@ -25,11 +25,11 @@ namespace TicketSystem.MVC
 
             #region Services
             builder.Services.AddScoped<ITicketsManager, TicketsManager>();
-            //builder.Services.AddScoped<IDepartmentManager, DepartmentManager>();
+            builder.Services.AddScoped<IDepartmentManager, DepartmentManager>();
             builder.Services.AddScoped<IDeveloperManager, DeveloperManager>();
 
             builder.Services.AddScoped<ITicketsRepo, TicketsRepo>();
-            //builder.Services.AddScoped<IDepartmentRepo, DepartmentRepo>();
+            builder.Services.AddScoped<IDepartmentRepo, DepartmentRepo>();
             builder.Services.AddScoped<IDevelopersRepo, DevelopersRepo>();
             #endregion
 
